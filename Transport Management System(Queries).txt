@@ -1,0 +1,17 @@
+  Transport Management System
+Case Study
+
+SQL queries(create commands)
+
+1.create table Vehicles(VehicleID INT AUTO_INCREMENT PRIMARY KEY,Model VARCHAR(255),Capacity DECIMAL(10, 2),Type VARCHAR(50),Status VARCHAR(50));
+
+2.create table Routes(RouteID INT AUTO_INCREMENT primary key, StartDestination VARCHAR(255),EndDestination VARCHAR(255),Distance DECIMAL(10,2));
+
+3.create table Trips(TripID INT AUTO_INCREMENT primary key, VehicleID int,RouteID int, DepartureDate DATETIME, ArrivalDate DATETIME, Status varchar(50),TripType Varchar(50), MaxPassengers int, CONSTRAINT VehicleIDfk FOREIGN KEY (VehicleID) REFERENCES Vehicles(VehicleID) on delete set null, CONSTRAINT RouteIDfk FOREIGN KEY (RouteID) REFERENCES Routes(RouteID) on delete set null);
+
+4.create table Passengers(PassengerID int AUTO_INCREMENT primary key, FirstName varchar(255),gender varchar(255),age int, Email varchar(255) unique, PhoneNumber varchar(50));
+
+
+5.create table Bookings(BookingID int AUTO_INCREMENT primary key,TripID int, PassengerID int ,BookingDate DATETIME, Status varchar(50), CONSTRAINT TripIDfk foreign key(TripID) REFERENCES Trips(TripID) on delete set null, CONSTRAINT PassengerIDfk foreign key(PassengerID) REFERENCES Passengers(PassengerID) on delete set null); 
+
+6.create table Driver(DriverID int primary key, DriverName varchar(255), TripID int, CONSTRAINT TripID2fk foreign key(TripID) references Trips(TripID) on delete set null); 
